@@ -90,7 +90,6 @@ def actualizar_sensor_hum(datos):
         datos[2] = '{0:0.1f} %'.format(hum)
         time.sleep(0.1)
 
-
 def actualizar_nivel_agua(datos):
     while True:
         if not GPIO.input(pin_agua):
