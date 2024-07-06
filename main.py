@@ -102,23 +102,18 @@ def actualizar_nivel_agua(datos):
         
 def data_received(received_data):
     global led_encendido, contador_activo, tiempo
-
     data = received_data
     print(data)
     if data == 'L':
         red.on()
         led_encendido = True
-        
     elif data == 'Y':
         red.off()
         led_encendido = False
-        
     elif data == 'H':
         boton_huminificador()
-
     elif data == 'R':
         boton_reinicio()
-        
     elif data == 'P':
         apagar_rap()
         
@@ -147,6 +142,6 @@ def main():
         print("{}".format(" / ".join(datos)))
         server.send("{}".format(" / ".join(datos)))
         time.sleep(0.01)
-        
+
 if __name__ == "__main__":
     main()
