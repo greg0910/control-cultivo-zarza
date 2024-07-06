@@ -24,11 +24,9 @@ led_encendido = False
 
 GPIO.setup(btn_leds, GPIO.IN, pull_up_down=GPIO.PUD_UP)
 
-
 def sensor_humytemp():
     hum, temp = Adafruit_DHT.read_retry(sensor, pin_sensor_hum)
     return hum, temp
-
 
 def mostrar_tiempo():
     horas = tiempo // 3600
@@ -36,8 +34,6 @@ def mostrar_tiempo():
     segundos = tiempo % 60
     return "{:02d}:{:02d}:{:02d}".format(horas, minutos, segundos)
      
-
-
 def boton_huminificador():
     global tiempo, contador_activo
     if not contador_activo:
@@ -49,15 +45,12 @@ def boton_huminificador():
         print("Tiempo extendido. Tiempo restante: {:02d}:{:02d}:{:02d}".format(tiempo // 3600, (tiempo % 3600) // 60,
                                                                                tiempo % 60))
 
-
 def boton_reinicio():
     global tiempo, contador_activo
     tiempo = 0  # Reiniciar el contador a cero
     contador_activo = False
     orange.off()
     
-
-
 def boton_leds_apagar_y_prender(channel):
     # Lógica para apagar o encender los LEDs
     global led_encendido
@@ -71,12 +64,9 @@ def boton_leds_apagar_y_prender(channel):
         red.on()
         led_encendido = True
         
-
-
 def apagar_rap():
     # Lógica para apagar la Raspberry Pi
     check_call(['sudo', 'poweroff'])
-
 
 def contar_tiempo():
     global contador_activo, tiempo
@@ -92,7 +82,6 @@ def contar_tiempo():
         else:
             orange.off()
         time.sleep(1)
-
 
 def actualizar_sensor_hum(datos):
     while True:
@@ -134,8 +123,6 @@ def data_received(received_data):
     elif data == 'P':
         apagar_rap()
         
-        
-
 def main():
     datos = ["","", "", "", "",""]
     server = BluetoothServer(data_received)
